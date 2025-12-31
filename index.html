@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy 22nd Birthday Widda Aulia Ditasari! 🎉</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/photobooth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Override pink colors to purple */
+        .emoji-btn:hover, .emoji-btn.selected { border-color: #8b5cf6; background: #faf5ff; }
+        .message-card { border-left: 4px solid #8b5cf6; }
+        .frame-btn:hover, .frame-btn.active { border-color: #8b5cf6; background: #faf5ff; }
+        .frame-btn.active { background: #8b5cf6; }
+    </style>
+</head>
+<body>
+    <!-- Welcome Banner Popup Slider -->
+    <div id="welcomePopup" class="welcome-popup">
+        <div class="popup-overlay"></div>
+        <div class="popup-content">
+            <button class="popup-close" id="popupClose">&times;</button>
+            <div class="banner-slider">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide active">
+                        <img src="images/banner/IMG-20210619-WA0002.jpg" alt="Banner 1" loading="eager">
+                        <div class="slide-caption">
+                            <h3>Selamat Datang! 💜</h3>
+                            <p>Di perayaan ulang tahun Widda</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/banner/IMG-20210619-WA0003.jpg" alt="Banner 2" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Moments Together ✨</h3>
+                            <p>Kenangan indah bersama</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/banner/IMG-20210619-WA0005.jpg" alt="Banner 3" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Happy 22nd Birthday! 🎂</h3>
+                            <p>Widda Aulia Ditasari</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+                <div class="slider-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <button class="popup-enter-btn" id="enterSiteBtn">
+                <i class="fas fa-door-open"></i> Masuk ke Website
+            </button>
+        </div>
+    </div>
+
+    <!-- Preloader - Hidden by default now -->
+    <div id="preloader" style="display: none;">
+        <div class="loader-content">
+            <div class="cake-loader">🎂</div>
+            <p>Menyiapkan kejutan untukmu...</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music Control -->
+    <div class="music-control" id="musicControl">
+        <button id="musicBtn" class="music-btn playing">
+            <i class="fas fa-pause"></i>
+        </button>
+    </div>
+    <audio id="bgMusic" loop autoplay>
+        <source src="audio/11nya.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-logo">� Widda's Birthday</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#countdown">Countdown</a></li>
+            <li><a href="#letter">Surat</a></li>
+            <li><a href="#photobooth">Photobooth</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#surprise">Surprise</a></li>
+            <li><a href="#guestbook">Buku Tamu</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Section 1: Opening Page -->
+    <section id="home" class="section opening-section">
+        <div class="confetti-container" id="confettiContainer"></div>
+        <div class="balloons">
+            <div class="balloon balloon-1">🎈</div>
+            <div class="balloon balloon-2">🎈</div>
+            <div class="balloon balloon-3">🎈</div>
+            <div class="balloon balloon-4">🎈</div>
+            <div class="balloon balloon-5">🎈</div>
+        </div>
+        
+        <div class="opening-content">
+            <div class="sparkle sparkle-1">✨</div>
+            <div class="sparkle sparkle-2">✨</div>
+            <div class="sparkle sparkle-3">✨</div>
+            
+            <!-- Hero Photo Section -->
+            <div class="hero-photo-container">
+                <div class="hero-photo-frame">
+                    <img src="images/wiwi.png" alt="Widda Aulia Ditasari" class="hero-photo" loading="lazy">
+                    <div class="photo-glow"></div>
+                </div>
+                <div class="hero-decorations">
+                    <span class="deco deco-1">🌸</span>
+                    <span class="deco deco-2">⭐</span>
+                    <span class="deco deco-3">🌸</span>
+                    <span class="deco deco-4">💜</span>
+                </div>
+            </div>
+            
+            <h1 class="main-title">
+                <span class="title-line">Happy</span>
+                <span class="title-line highlight">22<sup>nd</sup></span>
+                <span class="title-line">Birthday!</span>
+            </h1>
+            <h2 class="name-title">Widda Aulia Ditasari</h2>
+            <p class="birthday-date">🎉 1 Januari 2025 🎉</p>
+            <p class="birthday-tagline">Untuk sahabat terbaikku, selamat ulang tahun! 🌟</p>
+            
+            <button class="start-btn" id="startBtn">
+                <span>Mulai Perjalanan</span>
+                <i class="fas fa-star"></i>
+            </button>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll ke bawah</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Section 2: Countdown -->
+    <section id="countdown" class="section countdown-section">
+        <div class="section-header">
+            <h2 class="section-title">⏰ Countdown to Your Birthday</h2>
+            <p class="section-subtitle">Menghitung mundur menuju hari spesialmu!</p>
+        </div>
+        
+        <div class="countdown-container">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Hari</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Jam</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Menit</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Detik</div>
+            </div>
+        </div>
+        
+        <div class="birthday-reached" id="birthdayReached" style="display: none;">
+            <h2>🎉 SELAMAT ULANG TAHUN! 🎉</h2>
+            <p>Hari spesialmu telah tiba, Widda! 💖</p>
+            <div class="fireworks">
+                <div class="firework"></div>
+                <div class="firework"></div>
+                <div class="firework"></div>
+            </div>
+        </div>
+
+        <div class="age-facts">
+            <h3>✨ Fun Facts: 22 Tahun Berarti... ✨</h3>
+            <div class="facts-grid">
+                <div class="fact-item">
+                    <span class="fact-number">8,035</span>
+                    <span class="fact-label">Hari Hidup</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-number">192,840</span>
+                    <span class="fact-label">Jam Bahagia</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-number">∞</span>
+                    <span class="fact-label">Kenangan Indah</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Digital Letter -->
+    <section id="letter" class="section letter-section">
+        <div class="section-header">
+            <h2 class="section-title">💌 Surat Untukmu</h2>
+            <p class="section-subtitle">Pesan spesial dari sahabatmu</p>
+        </div>
+        
+        <div class="letter-container">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <p>Klik untuk membuka 💕</p>
+                </div>
+            </div>
+            
+            <div class="letter-paper" id="letterPaper">
+                <div class="letter-content">
+                    <p class="letter-date">1 Januari 2025</p>
+                    <p class="letter-greeting">Untuk Sahabatku Widda Aulia Ditasari,</p>
+                    
+                    <div class="letter-body">
+                        <p class="letter-paragraph" data-delay="1">
+                            Di hari yang sangat spesial ini, aku ingin mengucapkan selamat ulang tahun yang ke-22! 🎂
+                        </p>
+                        <p class="letter-paragraph" data-delay="2">
+                            Terima kasih sudah menjadi sahabat terbaik yang selalu ada di saat suka maupun duka. Kamu adalah salah satu orang paling berharga dalam hidupku!
+                        </p>
+                        <p class="letter-paragraph" data-delay="3">
+                            Semoga di usia 22 ini, semua impian dan cita-citamu tercapai. Semoga selalu diberi kesehatan, kebahagiaan, dan kesuksesan dalam setiap langkahmu.
+                        </p>
+                        <p class="letter-paragraph" data-delay="4">
+                            Teruslah menjadi pribadi yang ceria, baik hati, dan selalu menyebarkan energi positif ke semua orang di sekitarmu! 💜
+                        </p>
+                        <p class="letter-paragraph" data-delay="5">
+                            Selamat ulang tahun, Bestie! Semoga persahabatan kita langgeng selamanya! ✨
+                        </p>
+                    </div>
+                    
+                    <p class="letter-closing">Sahabatmu selamanya,</p>
+                    <p class="letter-signature">💜 Your Best Friend 💜</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Photobooth -->
+    <section id="photobooth" class="section photobooth-section">
+        <div class="section-header">
+            <h2 class="section-title">📸 Birthday Photobooth</h2>
+            <p class="section-subtitle">Abadikan momen spesialmu!</p>
+        </div>
+        
+        <div class="photobooth-container">
+            <div class="photobooth-main">
+                <!-- Camera View -->
+                <div class="camera-container">
+                    <video id="camera" autoplay playsinline></video>
+                    <canvas id="photoCanvas"></canvas>
+                    <img id="capturedPhoto" class="captured-photo" style="display: none;">
+                    
+                    <!-- Frame Overlay -->
+                    <div class="frame-overlay" id="frameOverlay"></div>
+                    
+                    <!-- Stickers Container -->
+                    <div class="stickers-on-photo" id="stickersOnPhoto"></div>
+                    
+                    <!-- Countdown Overlay -->
+                    <div class="countdown-overlay" id="countdownOverlay">
+                        <span class="countdown-number-big" id="photoCountdown">3</span>
+                    </div>
+                    
+                    <!-- Flash Effect -->
+                    <div class="flash-effect" id="flashEffect"></div>
+                </div>
+                
+                <!-- Controls -->
+                <div class="photobooth-controls">
+                    <button class="control-btn" id="startCamera">
+                        <i class="fas fa-video"></i>
+                        <span>Nyalakan Kamera</span>
+                    </button>
+                    <button class="control-btn capture-btn" id="captureBtn" disabled>
+                        <i class="fas fa-camera"></i>
+                        <span>Ambil Foto</span>
+                    </button>
+                    <button class="control-btn" id="retakeBtn" style="display: none;">
+                        <i class="fas fa-redo"></i>
+                        <span>Foto Ulang</span>
+                    </button>
+                    <button class="control-btn" id="downloadBtn" style="display: none;">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </button>
+                    <button class="control-btn" id="uploadBtn">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Foto</span>
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+            </div>
+            
+            <!-- Sidebar Options -->
+            <div class="photobooth-sidebar">
+                <!-- Frames -->
+                <div class="option-group">
+                    <h4><i class="fas fa-border-all"></i> Pilih Frame</h4>
+                    <div class="frames-grid">
+                        <button class="frame-btn active" data-frame="none">None</button>
+                        <button class="frame-btn" data-frame="birthday">🎂 Birthday</button>
+                        <button class="frame-btn" data-frame="hearts">💕 Hearts</button>
+                        <button class="frame-btn" data-frame="stars">⭐ Stars</button>
+                        <button class="frame-btn" data-frame="balloons">🎈 Balloons</button>
+                        <button class="frame-btn" data-frame="flowers">🌸 Flowers</button>
+                    </div>
+                </div>
+                
+                <!-- Filters -->
+                <div class="option-group">
+                    <h4><i class="fas fa-magic"></i> Filter</h4>
+                    <div class="filters-grid">
+                        <button class="filter-btn active" data-filter="none">Normal</button>
+                        <button class="filter-btn" data-filter="grayscale">B&W</button>
+                        <button class="filter-btn" data-filter="sepia">Vintage</button>
+                        <button class="filter-btn" data-filter="purple">Purple</button>
+                        <button class="filter-btn" data-filter="warm">Warm</button>
+                        <button class="filter-btn" data-filter="cool">Cool</button>
+                        <button class="filter-btn" data-filter="bright">Bright</button>
+                    </div>
+                </div>
+                
+                <!-- Stickers -->
+                <div class="option-group">
+                    <h4><i class="fas fa-sticky-note"></i> Stiker</h4>
+                    <div class="stickers-grid">
+                        <button class="sticker-btn" data-sticker="🎂">🎂</button>
+                        <button class="sticker-btn" data-sticker="🎈">🎈</button>
+                        <button class="sticker-btn" data-sticker="🎉">🎉</button>
+                        <button class="sticker-btn" data-sticker="🎁">🎁</button>
+                        <button class="sticker-btn" data-sticker="💖">💖</button>
+                        <button class="sticker-btn" data-sticker="⭐">⭐</button>
+                        <button class="sticker-btn" data-sticker="🌟">🌟</button>
+                        <button class="sticker-btn" data-sticker="✨">✨</button>
+                        <button class="sticker-btn" data-sticker="🦋">🦋</button>
+                        <button class="sticker-btn" data-sticker="🌸">🌸</button>
+                        <button class="sticker-btn" data-sticker="👑">👑</button>
+                        <button class="sticker-btn" data-sticker="💝">💝</button>
+                    </div>
+                    <button class="clear-stickers-btn" id="clearStickers">
+                        <i class="fas fa-trash"></i> Hapus Semua Stiker
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photo Gallery from Photobooth -->
+        <div class="photobooth-gallery">
+            <h4>📷 Foto-foto Kamu</h4>
+            <div class="gallery-grid" id="photoboothGallery"></div>
+        </div>
+    </section>
+
+    <!-- Section 5: Memory Gallery -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">🖼️ Galeri Kenangan</h2>
+            <p class="section-subtitle">Momen-momen indah bersama</p>
+        </div>
+        
+        <div class="gallery-tabs">
+            <button class="gallery-tab active" data-view="grid">
+                <i class="fas fa-th"></i> Grid
+            </button>
+            <button class="gallery-tab" data-view="timeline">
+                <i class="fas fa-stream"></i> Timeline
+            </button>
+            <button class="gallery-tab" data-view="slideshow">
+                <i class="fas fa-play"></i> Slideshow
+            </button>
+        </div>
+        
+        <!-- Grid View -->
+        <div class="gallery-view grid-view active" id="gridView">
+            <div class="memory-grid">
+                <div class="memory-item" data-caption="Widda Aulia Ditasari">
+                    <img src="images/wiwi.png" alt="Widda" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=Widda'">
+                    <div class="memory-overlay">
+                        <p>Widda Aulia Ditasari 💜</p>
+                    </div>
+                </div>
+                <div class="memory-item" data-caption="Momen Bersama">
+                    <img src="images/IMG_0449.JPG" alt="Memory" onerror="this.src='https://via.placeholder.com/300x300/a855f7/ffffff?text=Memory'">
+                    <div class="memory-overlay">
+                        <p>Momen Bersama ✨</p>
+                    </div>
+                </div>
+                <div class="memory-item" data-caption="Kenangan Indah">
+                    <img src="images/IMG_0450.JPG" alt="Memory" onerror="this.src='https://via.placeholder.com/300x300/7c3aed/ffffff?text=Memory'">
+                    <div class="memory-overlay">
+                        <p>Kenangan Indah 🌟</p>
+                    </div>
+                </div>
+                <div class="memory-item" data-caption="Sahabat Selamanya">
+                    <img src="images/banner/IMG-20210619-WA0002.jpg" alt="Memory" onerror="this.src='https://via.placeholder.com/300x300/c4b5fd/ffffff?text=Memory'">
+                    <div class="memory-overlay">
+                        <p>Sahabat Selamanya 💜</p>
+                    </div>
+                </div>
+                <div class="memory-item" data-caption="Tawa dan Canda">
+                    <img src="images/banner/IMG-20210619-WA0003.jpg" alt="Memory" onerror="this.src='https://via.placeholder.com/300x300/ddd6fe/ffffff?text=Memory'">
+                    <div class="memory-overlay">
+                        <p>Tawa dan Canda 😄</p>
+                    </div>
+                </div>
+                <div class="memory-item" data-caption="Persahabatan Kita">
+                    <img src="images/banner/IMG-20210619-WA0005.jpg" alt="Memory" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=Memory'">
+                    <div class="memory-overlay">
+                        <p>Persahabatan Kita 🌈</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Timeline View -->
+        <div class="gallery-view timeline-view" id="timelineView">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <img src="images/banner/IMG-20210619-WA0002.jpg" alt="2021" onerror="this.src='https://via.placeholder.com/400x300/8b5cf6/ffffff?text=2021'">
+                        <h4>Awal Persahabatan</h4>
+                        <p>Momen pertama yang tak terlupakan</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <img src="images/IMG_0449.JPG" alt="2023" onerror="this.src='https://via.placeholder.com/400x300/a855f7/ffffff?text=2023'">
+                        <h4>Perjalanan Berlanjut</h4>
+                        <p>Semakin banyak kenangan indah</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <img src="images/wiwi.png" alt="2025" onerror="this.src='https://via.placeholder.com/400x300/7c3aed/ffffff?text=2025'">
+                        <h4>Hari Spesial</h4>
+                        <p>Ulang tahun ke-22 yang berkesan! 💜</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slideshow View -->
+        <div class="gallery-view slideshow-view" id="slideshowView">
+            <div class="slideshow-container">
+                <div class="slideshow-main">
+                    <button class="slideshow-nav prev" id="slidePrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slideshow-image-container">
+                        <img id="slideshowImage" src="images/wiwi.png" alt="Slideshow" onerror="this.src='https://via.placeholder.com/800x500/8b5cf6/ffffff?text=Memory'">
+                        <p class="slideshow-caption" id="slideshowCaption">Widda Aulia Ditasari 💜</p>
+                    </div>
+                    <button class="slideshow-nav next" id="slideNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slideshow-controls">
+                    <button id="slideshowPlayPause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="slideshow-dots" id="slideshowDots"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="Lightbox">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+    </section>
+
+    <!-- Section 7: Surprise -->
+    <section id="surprise" class="section surprise-section">
+        <div class="section-header">
+            <h2 class="section-title">🎁 Surprise!</h2>
+            <p class="section-subtitle">Ada kejutan spesial untukmu</p>
+        </div>
+        
+        <div class="surprise-container">
+            <!-- Gift Box -->
+            <div class="gift-box-container">
+                <div class="gift-box" id="giftBox">
+                    <div class="gift-lid">
+                        <div class="gift-bow"></div>
+                    </div>
+                    <div class="gift-body"></div>
+                    <p class="gift-hint">Klik untuk membuka! 🎁</p>
+                </div>
+                
+                <div class="gift-content" id="giftContent" style="display: none;">
+                    <div class="surprise-message">
+                        <h3>🎉 Selamat Ulang Tahun ke-22! 🎉</h3>
+                        <p>Semoga di usia yang baru ini, kamu selalu diberkahi dengan:</p>
+                        <ul class="wishes-list">
+                            <li>� Persahabatan yang abadi</li>
+                            <li>😊 Kebahagiaan yang tak terhingga</li>
+                            <li>🌟 Kesuksesan di setiap langkah</li>
+                            <li>💪 Kesehatan yang prima</li>
+                            <li>✨ Mimpi yang terwujud</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secret Message -->
+            <div class="secret-message-container">
+                <h4>💬 Pesan Rahasia</h4>
+                <p>Klik kalau kamu sudah senyum hari ini! 😊</p>
+                <button class="secret-btn" id="secretBtn">
+                    <i class="fas fa-smile"></i>
+                    <span>Aku Sudah Senyum!</span>
+                </button>
+                <div class="secret-reveal" id="secretReveal" style="display: none;">
+                    <p class="secret-text">
+                        "Kamu adalah sahabat terbaik yang pernah ada! 
+                        Terima kasih sudah selalu ada untukku, Widda! 
+                        Persahabatan kita adalah harta yang tak ternilai! 💜"
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Wish Cards -->
+            <div class="wish-cards">
+                <h4>🌟 22 Harapan Untukmu</h4>
+                <div class="cards-container" id="wishCards">
+                    <!-- Cards will be generated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Guest Book -->
+    <section id="guestbook" class="section guestbook-section">
+        <div class="section-header">
+            <h2 class="section-title">💬 Buku Tamu</h2>
+            <p class="section-subtitle">Tinggalkan pesan dan ucapan untuknya</p>
+        </div>
+        
+        <div class="guestbook-container">
+            <div class="message-form">
+                <h4>✍️ Tulis Pesanmu</h4>
+                <form id="guestbookForm">
+                    <div class="form-group">
+                        <label for="guestName">Nama</label>
+                        <input type="text" id="guestName" placeholder="Siapa namamu?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guestMessage">Pesan</label>
+                        <textarea id="guestMessage" placeholder="Tulis ucapan atau pesan untuk Widda..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Pilih Emoji</label>
+                        <div class="emoji-picker">
+                            <button type="button" class="emoji-btn" data-emoji="🎂">🎂</button>
+                            <button type="button" class="emoji-btn" data-emoji="🎉">🎉</button>
+                            <button type="button" class="emoji-btn" data-emoji="💖">💖</button>
+                            <button type="button" class="emoji-btn" data-emoji="🌟">🌟</button>
+                            <button type="button" class="emoji-btn" data-emoji="🎈">🎈</button>
+                            <button type="button" class="emoji-btn" data-emoji="🥳">🥳</button>
+                            <button type="button" class="emoji-btn" data-emoji="💝">💝</button>
+                            <button type="button" class="emoji-btn" data-emoji="✨">✨</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+            
+            <div class="messages-list">
+                <h4>💌 Pesan-pesan</h4>
+                <div id="messagesList">
+                    <!-- Messages will be loaded here -->
+                    <div class="message-card sample">
+                        <div class="message-header">
+                            <span class="message-author">🎂 Admin</span>
+                            <span class="message-date">1 Jan 2025</span>
+                        </div>
+                        <p class="message-content">Selamat ulang tahun Widda! Semoga panjang umur dan selalu bahagia! 🎉💖</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Closing -->
+    <section id="closing" class="section closing-section">
+        <div class="closing-content">
+            <div class="hearts-animation">
+                <span class="floating-heart">�</span>
+                <span class="floating-heart">⭐</span>
+                <span class="floating-heart">🌟</span>
+                <span class="floating-heart">✨</span>
+                <span class="floating-heart">💜</span>
+            </div>
+            
+            <h2 class="closing-title">Terima Kasih Sudah Mampir! 💜</h2>
+            <p class="closing-message">
+                Semoga hari ulang tahunmu menjadi hari yang penuh kebahagiaan, Widda!
+                Selamat memasuki usia 22 tahun! 🎂✨
+            </p>
+            
+            <div class="closing-wishes">
+                <p>"Semoga semua mimpimu menjadi kenyataan"</p>
+                <p>"Happy 22nd Birthday, Widda Aulia Ditasari!"</p>
+            </div>
+            
+            <div class="closing-buttons">
+                <button class="closing-btn replay-btn" id="replayBtn">
+                    <i class="fas fa-redo"></i>
+                    Replay Kenangan
+                </button>
+                <button class="closing-btn love-btn" id="loveBtn">
+                    <i class="fas fa-user-friends"></i>
+                    Best Friends Forever 💜
+                </button>
+            </div>
+            
+            <div class="signature">
+                <p>Made with 💜 for Widda</p>
+                <p>© 2025</p>
+            </div>
+        </div>
+        
+        <div class="final-confetti" id="finalConfetti"></div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/confetti.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/photobooth.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+/* ========================================
+   Photobooth Styles
+======================================== */
+
+.photobooth-section {
+    background: linear-gradient(135deg, #e9d5ff 0%, #c4b5fd 50%, #ddd6fe 100%);
+}
+
+.photobooth-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photobooth-main {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Camera Container */
+.camera-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.camera-container video,
+.camera-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-container canvas {
+    display: none;
+}
+
+.captured-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 5;
+}
+
+/* Frame Overlay */
+.frame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Birthday Frame */
+.frame-overlay.birthday {
+    border: 20px solid transparent;
+    border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><text y="20" font-size="20">🎂🎈🎉🎁🎂🎈🎉🎁🎂🎈🎉🎁🎂🎈🎉🎁</text></svg>') 30 round;
+    box-sizing: border-box;
+}
+
+.frame-overlay.birthday::before {
+    content: '🎂 Happy Birthday! 🎂';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.frame-overlay.birthday::after {
+    content: '✨ Widda Aulia Ditasari ✨';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #a855f7, #9333ea);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Hearts Frame */
+.frame-overlay.hearts {
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="25">�</text></svg>') 0 0,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="25">⭐</text></svg>') 100% 0,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="25">🌟</text></svg>') 0 100%,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="25">💜</text></svg>') 100% 100%;
+    background-repeat: no-repeat;
+    border: 15px solid #8b5cf6;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.frame-overlay.hearts::before {
+    content: '💜 Best Friends 💜';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #7c3aed;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Stars Frame */
+.frame-overlay.stars {
+    border: 15px solid transparent;
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(135deg, #ffd700, #ffa500, #ffd700) border-box;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.frame-overlay.stars::before,
+.frame-overlay.stars::after {
+    position: absolute;
+    font-size: 30px;
+}
+
+.frame-overlay.stars::before {
+    content: '⭐✨⭐✨⭐';
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.frame-overlay.stars::after {
+    content: '🌟⭐🌟⭐🌟';
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Balloons Frame */
+.frame-overlay.balloons {
+    border: 15px solid #87ceeb;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.frame-overlay.balloons::before {
+    content: '🎈🎈🎈🎈🎈';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.frame-overlay.balloons::after {
+    content: '🎉 Party Time! 🎉';
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    color: white;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Flowers Frame */
+.frame-overlay.flowers {
+    border: 20px solid transparent;
+    border-image: linear-gradient(135deg, #ffb6c1, #dda0dd, #98fb98, #87ceeb) 1;
+    box-sizing: border-box;
+}
+
+.frame-overlay.flowers::before {
+    content: '🌸🌺🌷🌹🌻🌸🌺🌷';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+}
+
+.frame-overlay.flowers::after {
+    content: '🌹🌷🌺🌸🌻🌹🌷🌺';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+}
+
+/* Stickers on Photo */
+.stickers-on-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.placed-sticker {
+    position: absolute;
+    font-size: 40px;
+    cursor: move;
+    pointer-events: auto;
+    user-select: none;
+    transition: transform 0.1s ease;
+    z-index: 20;
+}
+
+.placed-sticker:hover {
+    transform: scale(1.2);
+}
+
+.placed-sticker.dragging {
+    transform: scale(1.3);
+    z-index: 25;
+}
+
+/* Countdown Overlay */
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.countdown-overlay.active {
+    display: flex;
+}
+
+.countdown-number-big {
+    font-size: 150px;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
+    animation: pulse 0.5s ease infinite;
+}
+
+/* Flash Effect */
+.flash-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    z-index: 40;
+    pointer-events: none;
+}
+
+.flash-effect.active {
+    animation: flash 0.3s ease;
+}
+
+/* Photobooth Controls */
+.photobooth-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.control-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f0f0;
+    color: var(--text-color);
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-btn.capture-btn {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    padding: 18px 35px;
+    font-size: 16px;
+}
+
+.control-btn.capture-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+#downloadBtn {
+    background: linear-gradient(135deg, #32cd32, #228b22);
+    color: white;
+}
+
+#retakeBtn {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    color: white;
+}
+
+/* Photobooth Sidebar */
+.photobooth-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.option-group {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.option-group h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Frames Grid */
+.frames-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.frame-btn {
+    padding: 10px;
+    border: 2px solid #eee;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.frame-btn:hover,
+.frame-btn.active {
+    border-color: var(--primary-color);
+    background: #fff5f8;
+}
+
+.frame-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Filters Grid */
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 10px;
+    border: 2px solid #eee;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    border-color: var(--secondary-color);
+    background: #f5f0ff;
+}
+
+.filter-btn.active {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Stickers Grid */
+.stickers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.sticker-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #eee;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sticker-btn:hover {
+    border-color: var(--primary-color);
+    background: #fff5f8;
+    transform: scale(1.1);
+}
+
+.clear-stickers-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.clear-stickers-btn:hover {
+    background: #ee5a5a;
+}
+
+/* Filter Styles */
+.filter-none {
+    filter: none;
+}
+
+.filter-grayscale {
+    filter: grayscale(100%);
+}
+
+.filter-sepia {
+    filter: sepia(80%);
+}
+
+.filter-purple {
+    filter: hue-rotate(270deg) saturate(1.5);
+}
+
+.filter-warm {
+    filter: sepia(30%) saturate(1.4);
+}
+
+.filter-cool {
+    filter: hue-rotate(180deg) saturate(0.8);
+}
+
+.filter-bright {
+    filter: brightness(1.2) contrast(1.1);
+}
+
+/* Photobooth Gallery */
+.photobooth-gallery {
+    margin-top: 50px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+}
+
+.photobooth-gallery h4 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.photobooth-gallery .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.photobooth-gallery .gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photobooth-gallery .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.photobooth-gallery .gallery-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.photobooth-gallery .gallery-item .item-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photobooth-gallery .gallery-item:hover .item-actions {
+    opacity: 1;
+}
+
+.photobooth-gallery .gallery-item .item-actions button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photobooth-gallery .gallery-item .item-actions button:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Empty Gallery State */
+.empty-gallery {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+}
+
+.empty-gallery i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.empty-gallery p {
+    font-size: 16px;
+}
+
+/* Responsive Photobooth */
+@media (max-width: 1024px) {
+    .photobooth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .photobooth-sidebar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .photobooth-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .photobooth-controls {
+        flex-direction: column;
+    }
+
+    .control-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stickers-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .countdown-number-big {
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .frames-grid,
+    .filters-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stickers-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .sticker-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
