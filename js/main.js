@@ -157,8 +157,10 @@ function startOpeningAnimations() {
 function initNavigation() {
     const nav = document.getElementById('mainNav');
     const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
+    const mobileLinks = document.querySelectorAll('.mobile-menu a');
 
     // Scroll effect
     window.addEventListener('scroll', () => {
@@ -173,13 +175,21 @@ function initNavigation() {
     });
 
     // Mobile toggle
-    if (navToggle) {
+    if (navToggle && mobileMenu) {
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     }
 
-    // Smooth scroll for nav links
+    // Smooth scroll for desktop nav links
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -188,7 +198,23 @@ function initNavigation() {
             
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
-                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // Smooth scroll for mobile nav links
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                mobileMenu.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
@@ -695,6 +721,186 @@ function throttle(func, limit) {
         }
     };
 }
+
+/* ========================================
+   Make a Wish Section
+======================================== */
+function initMakeWish() {
+    const candleContainer = document.getElementById('candleContainer');
+    const flameContainer = document.getElementById('flameContainer');
+    const wishFormContainer = document.getElementById('wishFormContainer');
+    const wishForm = document.getElementById('wishForm');
+    const wishTextarea = document.getElementById('wishText');
+    const charCount = document.getElementById('charCount');
+    const wishSentContainer = document.getElementById('wishSentContainer');
+    const wishBubble = document.getElementById('wishBubble');
+    const sentWishText = document.getElementById('sentWishText');
+    const explodeStars = document.querySelectorAll('.explode-star');
+    const wishesGrid = document.querySelector('.wishes-grid');
+    const candleInstruction = document.getElementById('candleInstruction');
+    
+    if (!candleContainer) return;
+    
+    let isFlameBlown = false;
+    
+    // Load saved wishes
+    loadWishes();
+    
+    // Candle click - blow out flame
+    candleContainer.addEventListener('click', () => {
+        if (isFlameBlown) return;
+        
+        isFlameBlown = true;
+        flameContainer.classList.add('blown-out');
+        candleInstruction.textContent = 'Lilin sudah ditiup! ✨';
+        candleInstruction.style.color = '#a855f7';
+        
+        // Show wish form after flame animation
+        setTimeout(() => {
+            wishFormContainer.classList.add('active');
+            wishFormContainer.style.display = 'block';
+            wishTextarea.focus();
+        }, 600);
+    });
+    
+    // Character count
+    if (wishTextarea) {
+        wishTextarea.addEventListener('input', () => {
+            const count = wishTextarea.value.length;
+            charCount.textContent = count;
+            
+            if (count >= 200) {
+                charCount.style.color = '#ef4444';
+            } else if (count >= 150) {
+                charCount.style.color = '#f59e0b';
+            } else {
+                charCount.style.color = 'rgba(255, 255, 255, 0.5)';
+            }
+        });
+    }
+    
+    // Form submit handler - PREVENT DEFAULT!
+    if (wishForm) {
+        wishForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload!
+            e.stopPropagation();
+            
+            const wishText = wishTextarea.value.trim();
+            
+            if (!wishText) {
+                wishTextarea.style.borderColor = '#ef4444';
+                wishTextarea.classList.add('shake');
+                setTimeout(() => {
+                    wishTextarea.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    wishTextarea.classList.remove('shake');
+                }, 1000);
+                return false;
+            }
+            
+            // Save wish
+            saveWish(wishText);
+            
+            // Show animation container
+            wishSentContainer.style.display = 'flex';
+            sentWishText.textContent = wishText;
+            
+            // Trigger animations
+            setTimeout(() => {
+                wishSentContainer.classList.add('active');
+                wishBubble.classList.add('animate');
+            }, 50);
+            
+            // Trigger stars explosion
+            setTimeout(() => {
+                explodeStars.forEach((star, index) => {
+                    setTimeout(() => {
+                        star.classList.add('animate');
+                    }, index * 100);
+                });
+            }, 300);
+            
+            // Hide animation and reset after animation completes
+            setTimeout(() => {
+                // Fade out
+                wishSentContainer.classList.remove('active');
+                
+                setTimeout(() => {
+                    wishSentContainer.style.display = 'none';
+                    wishBubble.classList.remove('animate');
+                    explodeStars.forEach(star => {
+                        star.classList.remove('animate');
+                    });
+                    
+                    // Reset form
+                    wishTextarea.value = '';
+                    charCount.textContent = '0';
+                    
+                    // Reset candle for next wish
+                    isFlameBlown = false;
+                    flameContainer.classList.remove('blown-out');
+                    wishFormContainer.classList.remove('active');
+                    candleInstruction.textContent = 'Klik lilin untuk meniup! 🕯️';
+                    candleInstruction.style.color = '';
+                    
+                    // Reload wishes display
+                    loadWishes();
+                }, 500);
+            }, 3500);
+            
+            return false;
+        });
+    }
+    
+    // Save wish to localStorage
+    function saveWish(text) {
+        const wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
+        const newWish = {
+            id: Date.now(),
+            text: text,
+            date: new Date().toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+        };
+        wishes.unshift(newWish);
+        localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
+    }
+    
+    // Load wishes from localStorage
+    function loadWishes() {
+        if (!wishesGrid) return;
+        
+        const wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
+        
+        if (wishes.length === 0) {
+            wishesGrid.innerHTML = '<p class="no-wishes">Belum ada harapan. Tiup lilin untuk membuat harapan pertama! ✨</p>';
+            return;
+        }
+        
+        wishesGrid.innerHTML = wishes.map((wish, index) => `
+            <div class="saved-wish-card" style="animation-delay: ${index * 0.1}s">
+                <p>${escapeHtml(wish.text)}</p>
+                <span class="wish-date">📅 ${wish.date}</span>
+            </div>
+        `).join('');
+    }
+    
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Initialize Make a Wish on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize after a small delay to ensure DOM is ready
+    setTimeout(initMakeWish, 100);
+});
 
 // Console birthday message
 console.log(`

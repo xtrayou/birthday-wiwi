@@ -10,12 +10,20 @@ class MemoryGallery {
         this.slideshowInterval = null;
         
         this.memories = [
-            { src: 'images/wiwi.png', caption: 'Widda Aulia Ditasari 💜', year: '2025', fallback: 'https://via.placeholder.com/800x500/8b5cf6/ffffff?text=Widda' },
-            { src: 'images/IMG_0449.JPG', caption: 'Momen Bersama ✨', year: '2023', fallback: 'https://via.placeholder.com/800x500/a855f7/ffffff?text=Memory' },
-            { src: 'images/IMG_0450.JPG', caption: 'Kenangan Indah 🌟', year: '2023', fallback: 'https://via.placeholder.com/800x500/7c3aed/ffffff?text=Memory' },
-            { src: 'images/banner/IMG-20210619-WA0002.jpg', caption: 'Sahabat Selamanya 💜', year: '2021', fallback: 'https://via.placeholder.com/800x500/c4b5fd/ffffff?text=Memory' },
-            { src: 'images/banner/IMG-20210619-WA0003.jpg', caption: 'Tawa dan Canda 😄', year: '2021', fallback: 'https://via.placeholder.com/800x500/ddd6fe/ffffff?text=Memory' },
-            { src: 'images/banner/IMG-20210619-WA0005.jpg', caption: 'Persahabatan Kita 🌈', year: '2021', fallback: 'https://via.placeholder.com/800x500/8b5cf6/ffffff?text=Memory' }
+            { src: 'images/wiwi.png', caption: 'Widda Aulia Ditasari 💜', year: '2025' },
+            { src: 'images/wiwi (1).jpeg', caption: 'Cantik Selalu ✨', year: '2021' },
+            { src: 'images/wiwi (2).jpeg', caption: 'Senyum Manis 😊', year: '2021' },
+            { src: 'images/wiwi (3).jpeg', caption: 'Momen Bahagia 🌟', year: '2022' },
+            { src: 'images/wiwi (4).jpeg', caption: 'Kenangan Indah 💫', year: '2022' },
+            { src: 'images/wiwi (5).jpeg', caption: 'Best Moment 🎉', year: '2022' },
+            { src: 'images/wiwi (6).jpeg', caption: 'Sahabat Terbaik 💜', year: '2023' },
+            { src: 'images/wiwi (7).jpeg', caption: 'Sweet Memory 🌸', year: '2023' },
+            { src: 'images/wiwi (8).jpeg', caption: 'Tawa Bersama 😄', year: '2023' },
+            { src: 'images/wiwi (9).jpeg', caption: 'Forever Friends 💕', year: '2024' },
+            { src: 'images/wiwi (10).jpeg', caption: 'Happy Vibes ✨', year: '2024' },
+            { src: 'images/wiwi (11).jpeg', caption: 'Precious Time 🌈', year: '2024' },
+            { src: 'images/wiwi (12).jpeg', caption: 'Beautiful Soul 💜', year: '2024' },
+            { src: 'images/wiwi (13).jpeg', caption: 'Persahabatan Abadi 🌟', year: '2025' }
         ];
 
         this.init();
