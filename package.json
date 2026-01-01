@@ -1,0 +1,23 @@
+{
+  "name": "birthday-wiwi",
+  "version": "1.0.0",
+  "description": "Website ulang tahun interaktif untuk merayakan ulang tahun ke-22 Widda Aulia Ditasari pada tanggal 1 Januari 2025.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xtrayou/birthday-wiwi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xtrayou/birthday-wiwi/issues"
+  },
+  "homepage": "https://github.com/xtrayou/birthday-wiwi#readme",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}
